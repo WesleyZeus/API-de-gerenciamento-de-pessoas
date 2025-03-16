@@ -66,7 +66,7 @@ class Register(Resource):
         db.session.add(new_user)
         db.session.commit()
 
-        return {"message": "Usuário registrado com sucesso"}, 201
+        return {"message": "Usuário registrado com sucesso", "id": new_user.id}, 201
 
 
 
@@ -93,7 +93,7 @@ class Login(Resource):
             identity=str(user.id), 
             additional_claims={"role": user.role}  
         )
-        
+        print(f"Token gerado: {access_token}")
 
         return {"access_token": f"Bearer {access_token}"}, 200
 
@@ -143,7 +143,7 @@ class PromoterUser(Resource):
         db.session.commit()
 
 
-        return {"mensagem":"Usuário promovido a administrador com sucesso!"}
+        return {"message":"Usuário promovido a administrador com sucesso!"}
     
 
 
